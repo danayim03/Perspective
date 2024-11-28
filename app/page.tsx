@@ -1,9 +1,12 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
+import { useRouter } from "next/navigation"
 
 export default function Home() {
   const [text, setText] = useState(""); // State to hold the typed text
+  const [nickname, setNickname] = useState("");
+  const router = useRouter();
   const targetText = "Perspective👀"; // The full text to type
   const typingSpeed = 150; // Typing speed in ms per character
 
@@ -25,6 +28,16 @@ export default function Home() {
     return () => clearTimeout(timerId);
   }, []);
 
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === "Enter" && nickname.trim() !== "") {
+      // Save the nickname in session storage
+      sessionStorage.setItem("nickname", nickname);
+
+      // Navigate to the next page
+      router.push("/dob");
+    }
+  };
+
   return (
     <main className="font-roboto flex flex-col items-center justify-center h-screen">
       {/* Introductory text */}
@@ -45,8 +58,11 @@ export default function Home() {
       {/* Input field */}
       <input
         type="text"
-        placeholder="Enter a nickname to begin chatting..."
+        placeholder=" Enter a nickname to begin chatting... "
         className="bg-pink-300 rounded-full p-2 w-96 focus:outline-none focus:ring-1 focus:ring-pink-300 text-white placeholder-white"
+        value={nickname}
+        onChange={(e) => setNickname(e.target.value)} // Update nickname state
+        onKeyDown={handleKeyDown}
       />
     </main>
   );

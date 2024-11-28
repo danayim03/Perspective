@@ -1,13 +1,35 @@
 "use client";
 
 import { useRouter } from "next/navigation";
+import React, { useState } from "react";
 
 export default function dob() {
     const router = useRouter();
+    const [dob, setDob] = useState("");
+    const [errorMessage, setErrorMessage] = useState("");
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        router.push("/get-give"); // Redirect to the next page after submission
+
+        // Calculate age
+        const birthDate = new Date(dob);
+        const today = new Date();
+        let age = today.getFullYear() - birthDate.getFullYear();
+        const monthDifference = today.getMonth() - birthDate.getMonth();
+
+        // Adjust age if the birth month/day hasn't passed yet
+        if (monthDifference < 0 || (monthDifference === 0 && today.getDate() < birthDate.getDate())) {
+            age--;
+        }
+
+        // Check if user is at least 16 years old
+        if (age < 16) {
+            setErrorMessage("Sorry, you must be 16 or older to use Perspective.");
+            return;
+        }
+
+        // If valid, proceed to the next page
+        router.push("/get-give");
     };
 
     return (
@@ -21,7 +43,14 @@ export default function dob() {
                     type="date"
                     required
                     className="mt-1 p-4 bg-pink-300 text-white rounded-full"
+                    value={dob}
+                    onChange={(e) => setDob(e.target.value)} // Update DOB state
                 />
+
+                {/* Error Message */}
+                {errorMessage && (
+                    <div className="text-red-500 text-sm">{errorMessage}</div>
+                )}
 
                 {/* Guidelines */}
                 <span>Please agree to our community guidelines to proceed.</span>
@@ -84,7 +113,7 @@ export default function dob() {
                     type="submit"
                     className="text-black hover:text-pink-300"
                 >
-                    Proceed
+                    Proceed!
                 </button>
             </form>
         </main>
