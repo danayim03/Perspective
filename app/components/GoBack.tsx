@@ -8,7 +8,7 @@ export default function GoBackButton() {
     return (
         <button
             onClick={() => router.back()} // Navigate to the previous page
-            className="font-roboto mt-24 hover:text-pink-300"
+            className="font-roboto mt-24 hover:text-popPurple"
         >
             Go Back
         </button>

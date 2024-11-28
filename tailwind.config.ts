@@ -17,6 +17,9 @@ export default {
       fontFamily: {
         roboto: ["Roboto Mono", "monospace"], // Add Roboto Mono as a font family
       },
+      colors: {
+        'popPurple': '#d0a4dc'
+      },
     },
   },
   corePlugins: {

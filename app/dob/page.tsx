@@ -52,7 +52,7 @@ export default function dob() {
                 <input
                     type="date"
                     required
-                    className="mt-1 p-4 bg-pink-300 text-white rounded-full"
+                    className="mt-1 p-4 bg-popPurple text-white rounded-full"
                     value={dob}
                     onChange={(e) => setDob(e.target.value)} // Update DOB state
                 />
@@ -121,7 +121,7 @@ export default function dob() {
                 {/* Submit Button */}
                 <button
                     type="submit"
-                    className="text-black hover:text-pink-300"
+                    className="text-black hover:text-popPurple"
                 >
                     Proceed!
                 </button>

@@ -1,7 +1,7 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { useSearchParams, useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
+import { useEffect, useState } from "react";
 import GoBackButton from "../components/GoBack";
 
 const genders = [
@@ -78,7 +78,7 @@ export default function GenderSexualitySelection() {
             <div className="flex flex-row">
                 <div className="max-w-md m-4">
                     <button
-                        className="w-full text-h3 text-white bg-pink-300 p-4 rounded-full"
+                        className="w-full text-h3 text-white bg-popPurple p-4 rounded-full"
                         onClick={() => setGenderMenuOpen(!genderMenuOpen)}
                     >
                         {selectedGender || "Select Gender"}
@@ -112,7 +112,7 @@ export default function GenderSexualitySelection() {
 
                 <div className="max-w-md m-4">
                     <button
-                        className="w-full text-h3 text-white bg-pink-300 p-4 rounded-full"
+                        className="w-full text-h3 text-white bg-popPurple p-4 rounded-full"
                         onClick={() => setSexualityMenuOpen(!sexualityMenuOpen)}
                     >
                         {selectedSexuality || "Select Sexuality"}
@@ -148,7 +148,7 @@ export default function GenderSexualitySelection() {
             {/* Proceed Button */}
             {selectedGender && selectedSexuality && (
                 <button
-                    className="text-black hover:text-pink-300 mt-4"
+                    className="text-black hover:text-popPurple mt-4"
                     onClick={handleProceed}
                 >
                     Proceed!

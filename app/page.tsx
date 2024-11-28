@@ -1,7 +1,7 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
-import { useRouter } from "next/navigation"
+import { useRouter } from "next/navigation";
+import React, { useEffect, useState } from "react";
 
 export default function Home() {
   const [text, setText] = useState(""); // State to hold the typed text
@@ -59,7 +59,7 @@ export default function Home() {
       <input
         type="text"
         placeholder=" Enter a nickname to begin chatting... "
-        className="bg-pink-300 rounded-full p-2 w-96 focus:outline-none focus:ring-1 focus:ring-pink-300 text-white placeholder-white"
+        className="bg-popPurple rounded-full p-2 w-96 focus:outline-none focus:ring-1 focus:ring-popPurple text-white placeholder-white"
         value={nickname}
         onChange={(e) => setNickname(e.target.value)} // Update nickname state
         onKeyDown={handleKeyDown}

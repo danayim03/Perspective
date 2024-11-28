@@ -1,6 +1,6 @@
     const PerspectiveName = () => (
     <>
-        <span className="font-roboto font-bold text-pink-300">Perspective</span>
+        <span className="font-roboto font-bold text-popPurple">Perspective</span>
     </>
     );
 

@@ -1,7 +1,7 @@
 "use client";
 
-import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 interface Message {
     sender: string;
@@ -50,13 +50,13 @@ export default function ChatPage() {
             <div className="w-full max-w-4xl flex justify-between mb-4 mt-20">
                 <button
                     onClick={handleEndSession}
-                    className="bg-pink-300 text-white py-2 px-4 rounded-md hover:bg-pink-400"
+                    className="bg-popPurple text-white py-2 px-4 rounded-md hover:bg-pink-400"
                 >
                     End Session
                 </button>
                 <button
                     onClick={handleRematch}
-                    className="bg-pink-300 text-white py-2 px-4 rounded-md hover:bg-pink-400"
+                    className="bg-popPurple text-white py-2 px-4 rounded-md hover:bg-pink-400"
                 >
                     Rematch me!
                 </button>
@@ -65,7 +65,7 @@ export default function ChatPage() {
             {/* Chat Box */}
             <div className="w-full max-w-4xl h-[85%] border rounded-lg bg-gray-50 flex flex-col">
                 {/* Chat Header */}
-                <div className="text-center py-2 bg-pink-300 text-white text-sm font-medium rounded-t-lg">
+                <div className="text-center py-2 bg-popPurple text-white text-sm font-medium rounded-t-lg">
                     Chatting with {opponentNickname}
                 </div>
 
@@ -84,7 +84,7 @@ export default function ChatPage() {
                                 <div
                                     className={`relative max-w-xs px-4 py-2 ${
                                         message.sender === "You"
-                                            ? "bg-pink-300 text-white"
+                                            ? "bg-popPurple text-white"
                                             : "bg-gray-200 text-black"
                                     }`}
                                     style={{
@@ -102,7 +102,7 @@ export default function ChatPage() {
                                     <div
                                         className={`absolute top-1/2 ${
                                             message.sender === "You"
-                                                ? "right-[-10px] border-t-[10px] border-l-[10px] border-t-transparent border-b-transparent border-l-pink-300"
+                                                ? "right-[-10px] border-t-[10px] border-l-[10px] border-t-transparent border-b-transparent border-l-popPurple"
                                                 : "left-[-10px] border-t-[10px] border-r-[10px] border-t-transparent border-b-transparent border-r-gray-200"
                                         }`}
                                     ></div>
@@ -128,7 +128,7 @@ export default function ChatPage() {
                     />
                     <button
                         onClick={handleSend}
-                        className="bg-pink-300 text-white py-3 px-6 rounded-r-full hover:bg-pink-400"
+                        className="bg-popPurple text-white py-3 px-6 rounded-r-full hover:bg-pink-400"
                     >
                         SEND
                     </button>
