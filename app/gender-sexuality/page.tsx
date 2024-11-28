@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
+import GoBackButton from "../components/GoBack";
 
 const genders = [
     "Male", "Female", "Non-binary", "Transgender Male", "Transgender Female",
@@ -53,7 +54,7 @@ export default function GenderSexualitySelection() {
         if (selectedGender && selectedSexuality) {
             sessionStorage.setItem("selectedGender", selectedGender);
             sessionStorage.setItem("selectedSexuality", selectedSexuality);
-            router.push("/next-page"); // Replace with the new page URL
+            router.push("/loading");
         } else {
             alert("Please select both a gender and a sexuality.");
         }
@@ -153,6 +154,7 @@ export default function GenderSexualitySelection() {
                     Proceed!
                 </button>
             )}
+            <GoBackButton />
         </div>
     );
 }

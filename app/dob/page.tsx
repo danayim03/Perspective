@@ -1,12 +1,21 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import GoBackButton from "../components/GoBack";
 
 export default function dob() {
     const router = useRouter();
     const [dob, setDob] = useState("");
     const [errorMessage, setErrorMessage] = useState("");
+    const [nickname, setNickname] = useState(""); // State to store the nickname
+
+    useEffect(() => {
+        const storedNickname = sessionStorage.getItem("nickname");
+        if (storedNickname) {
+            setNickname(storedNickname); // Set nickname from session storage
+        }
+    }, []);
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
@@ -36,6 +45,7 @@ export default function dob() {
         <main className="flex flex-col items-center justify-center h-screen p-8 font-roboto">
             <form onSubmit={handleSubmit} className="flex flex-col items-center space-y-8">
                 {/* Title */}
+                {/* <span>Before we continue, {nickname || "Username"}</span> */}
                 <span className="font-medium text-h1 mb-4">What is your date of birth?</span>
 
                 {/* Date Input */}
@@ -116,6 +126,7 @@ export default function dob() {
                     Proceed!
                 </button>
             </form>
+            <GoBackButton />
         </main>
     );
 }

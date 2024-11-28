@@ -1,6 +1,7 @@
 "use client"
 import {useRouter} from "next/navigation";
 import React, { useState, useEffect } from "react";
+import GoBackButton from "../components/GoBack";
 
 const GetBold = () => (
     <>
@@ -40,6 +41,7 @@ export default function get_give () {
                     <GiveBold /> a perspective
                 </button>
             </div>
+            <GoBackButton />
         </main>
     )
 }
