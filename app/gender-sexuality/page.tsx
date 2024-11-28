@@ -54,7 +54,7 @@ export default function GenderSexualitySelection() {
         if (selectedGender && selectedSexuality) {
             sessionStorage.setItem("selectedGender", selectedGender);
             sessionStorage.setItem("selectedSexuality", selectedSexuality);
-            router.push("/loading");
+            router.push(`/loading?view=${view}`);
         } else {
             alert("Please select both a gender and a sexuality.");
         }

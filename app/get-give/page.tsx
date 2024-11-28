@@ -3,17 +3,8 @@ import {useRouter} from "next/navigation";
 import React, { useState, useEffect } from "react";
 import GoBackButton from "../components/GoBack";
 
-const GetBold = () => (
-    <>
-        <span className="font-bold">Get</span>
-    </>
-);
-
-const GiveBold = () => (
-    <>
-        <span className="font-bold">Give</span>
-    </>
-);
+const GetBold = () => <span className="font-bold">Get</span>;
+const GiveBold = () => <span className="font-bold">Give</span>;
 
 export default function get_give () {
     const router = useRouter();
@@ -43,5 +34,5 @@ export default function get_give () {
             </div>
             <GoBackButton />
         </main>
-    )
+    );
 }
