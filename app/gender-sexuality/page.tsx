@@ -5,17 +5,11 @@ import { useEffect, useState } from "react";
 import GoBackButton from "../components/GoBack";
 
 const genders = [
-    "Male", "Female", "Non-binary", "Transgender Male", "Transgender Female",
-    "Genderqueer", "Genderfluid", "Agender", "Two-Spirit", "Intersex",
-    "Demiboy", "Demigirl", "Bigender", "Pangender", "Androgynous",
-    "Neutrois", "Questioning", "Other"
+    "Male", "Female", "Non-binary"
 ];
 
 const sexualities = [
-    "Straight (Heterosexual)", "Gay (Homosexual)", "Lesbian", "Bisexual",
-    "Pansexual", "Asexual", "Demisexual", "Queer", "Polysexual",
-    "Omnisexual", "Greysexual", "Aromantic", "Androsexual", "Gynosexual",
-    "Skoliosexual", "Sapiosexual", "Allosexual", "Questioning", "Other"
+    "Straight", "Gay", "Lesbian", "Bisexual"
 ];
 
 export default function GenderSexualitySelection() {
@@ -61,9 +55,9 @@ export default function GenderSexualitySelection() {
     };
 
     return (
-        <div className="flex flex-col items-center justify-center h-screen p-8 font-roboto">
+        <div className="flex flex-col overflow-y-auto items-center justify-center min-h-screen p-8 font-roboto">
             {/* Conditional Heading */}
-            <p className="font-medium text-h1 mb-4">
+            <p className="font-medium text-h1 mb-4 mt-14">
                 {view === "get" &&
                     `Whose perspective would you like to gain today, ${
                         nickname || "Username"
@@ -155,6 +149,12 @@ export default function GenderSexualitySelection() {
                 </button>
             )}
             <GoBackButton />
+
+            <div>
+                <p className="p-10 max-w-md">*We’re working to include more genders and sexualities, but with our small (and growing!) community, 
+                    we’re starting simple—stay tuned as we grow! If you don’t see your gender, sexuality, or your crush’s represented, 
+                    we’d love to hear from you—please email us and help us make Perspective even better!</p>
+            </div>
         </div>
     );
 }

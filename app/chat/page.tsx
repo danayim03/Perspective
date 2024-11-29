@@ -1,7 +1,8 @@
 "use client";
 
-import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
+import { useState, useEffect } from "react";
+import socket from "../lib/socket";
 
 interface Message {
     sender: string;
@@ -11,10 +12,20 @@ interface Message {
 export default function ChatPage() {
     const [messages, setMessages] = useState<Message[]>([]);
     const [inputText, setInputText] = useState<string>("");
+    const searchParams = useSearchParams();
     const router = useRouter();
+    const matchId = searchParams.get("matchId"); // Match ID from the query parameter
 
-    // Hardcoded opponent's nickname for demonstration
-    const opponentNickname = "Nickname123";
+    useEffect(() => {
+        // Listen for incoming messages
+        socket.on("receive-message", (message) => {
+            setMessages((prevMessages) => [...prevMessages, { sender: "Them", text: message }]);
+        });
+
+        return () => {
+            socket.off("receive-message");
+        };
+    }, []);
 
     const handleSend = () => {
         if (inputText.trim()) {
@@ -23,6 +34,7 @@ export default function ChatPage() {
                 ...prevMessages,
                 { sender: "You", text: inputText },
             ]);
+            socket.emit("send-message", { matchId, message: inputText }); // Send message to the server
             setInputText(""); // Clear the input field
         }
     };
@@ -34,15 +46,27 @@ export default function ChatPage() {
     };
 
     const handleEndSession = () => {
+        socket.emit("end-session", { matchId }); // Notify the server to end the session
         setMessages([]);
         alert("Chat session ended.");
         router.push("/"); // Redirect to the home page
     };
 
     const handleRematch = () => {
+        const currentView = sessionStorage.getItem("view"); // Retrieve the view ("get" or "give") from sessionStorage
+    
+        if (!currentView) {
+            alert("Error: Unable to determine your role. Returning to the home page.");
+            router.push("/"); // Redirect to home if the view is missing
+            return;
+        }
+    
+        socket.emit("end-session", { matchId }); // Notify the server to end the session
         setMessages([]);
         alert("Looking for a new match...");
+        router.push(`/loading?view=${currentView}`); // Redirect with the correct view
     };
+    
 
     return (
         <main className="font-roboto flex flex-col items-center justify-center h-screen p-4 bg-white">
@@ -61,12 +85,12 @@ export default function ChatPage() {
                     Rematch me!
                 </button>
             </div>
-            
+
             {/* Chat Box */}
             <div className="w-full max-w-4xl h-[85%] border rounded-lg bg-gray-50 flex flex-col">
                 {/* Chat Header */}
                 <div className="text-center py-2 bg-popPurple text-white text-sm font-medium rounded-t-lg">
-                    Chatting with {opponentNickname}
+                    Chatting with your match
                 </div>
 
                 {/* Chat Messages */}

@@ -20,6 +20,7 @@ export default {
       colors: {
         'popPurple': '#d0a4dc'
       },
+  
     },
   },
   corePlugins: {
