@@ -28,6 +28,9 @@ export default function Loading() {
                 desiredSexuality: "",
             });
         } else if (view === "get") {
+            setDesiredGender(storedGender || "");
+            setDesiredSexuality(storedSexuality || "");
+
             // Emit real WebSocket event for getters
             socket.emit("find-match", {
                 userGender: "",
@@ -61,8 +64,10 @@ export default function Loading() {
             <div>
                 {view === "get" && (
                     <span className="text-h2 font-medium">
-                        {status} Matching you with a {desiredSexuality?.toLowerCase()}{" "}
-                        {desiredGender?.toLowerCase()}...or something similar
+                        {status}{" "}
+                        {desiredGender && desiredSexuality
+                            ? `Matching you with a ${desiredSexuality.toLowerCase()} ${desiredGender.toLowerCase()}...`
+                            : "Matching you with someone..."}
                     </span>
                 )}
                 {view === "give" && (
