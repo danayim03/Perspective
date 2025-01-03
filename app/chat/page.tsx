@@ -1,8 +1,8 @@
 "use client";
 
 import { useRouter, useSearchParams } from "next/navigation";
-import { useState, useEffect } from "react";
-import socket from "../lib/socket";
+import { useEffect, useState } from "react";
+import socket from "../../lib/frontendSocket";
 
 interface Message {
     sender: string;
@@ -14,7 +14,7 @@ export default function ChatPage() {
     const [inputText, setInputText] = useState<string>("");
     const searchParams = useSearchParams();
     const router = useRouter();
-    const matchId = searchParams.get("matchId"); // Match ID from the query parameter
+    const matchId = searchParams?.get("matchId"); // Match ID from the query parameter
 
     useEffect(() => {
         // Listen for incoming messages

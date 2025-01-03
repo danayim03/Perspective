@@ -1,4 +1,5 @@
 // pages/api/socket.js
+// websocket backend handler
 
 import { Server } from "socket.io";
 

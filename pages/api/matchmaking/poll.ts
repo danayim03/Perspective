@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { prisma } from "../../../app/lib/prisma";
+import { prisma } from "../../../lib/prisma";
 
 // API handler for polling
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {

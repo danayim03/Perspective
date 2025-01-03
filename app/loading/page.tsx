@@ -1,9 +1,9 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
+import { useEffect, useState } from "react";
+import socket from "../../lib/frontendSocket";
 import GoBackButton from "../components/GoBack";
-import { useSearchParams, useRouter } from "next/navigation";
-import socket from "../lib/socket";
 
 export default function Loading() {
     const [gender, setGender] = useState(""); // User's gender (if giver)
@@ -46,7 +46,7 @@ export default function Loading() {
         socket.on("match-found", (matchedUser) => {
             console.log("Match found:", matchedUser);
             setStatus("Match found! Redirecting...");
-            setTimeout(() => router.push(`/chat?matchId=${matchedUser.socketId}`), 1000);
+            setTimeout(() => router.push(`/chat?matchId=${matchedUser.socketId}`), 1500);
         });
 
         socket.on("no-match", () => {
