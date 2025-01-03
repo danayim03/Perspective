@@ -2,12 +2,6 @@
 
 © 2024, Dana Yim. All rights reserved.
 
-This repository and its contents, including all code, text, images, and ideas, are copyrighted and protected under international copyright laws.
-
-### Restrictions
-- You **may not** copy, reproduce, distribute, or create derivative works from this project, in whole or in part, without explicit written permission from the copyright holder.
-- Unauthorized use of this project is strictly prohibited and may result in legal action.
-
 ### Contact
 For inquiries regarding permissions or other uses, please contact danayim03@gmail.com.
 
