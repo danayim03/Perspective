@@ -1,16 +1,11 @@
 "use client";
 
 import { useRouter, useSearchParams } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import GoBackButton from "../components/GoBack";
 
-const genders = [
-    "Male", "Female", "Non-binary"
-];
-
-const sexualities = [
-    "Straight", "Gay", "Lesbian", "Bisexual"
-];
+const genders = ["Male", "Female", "Non-binary"];
+const sexualities = ["Straight", "Gay", "Lesbian", "Bisexual"];
 
 export default function GenderSexualitySelection() {
     const [genderSearch, setGenderSearch] = useState("");
@@ -20,11 +15,13 @@ export default function GenderSexualitySelection() {
     const [genderMenuOpen, setGenderMenuOpen] = useState(false);
     const [sexualityMenuOpen, setSexualityMenuOpen] = useState(false);
     const [nickname, setNickname] = useState(""); // State to store the nickname
+    const genderMenuRef = useRef(null);
+    const sexualityMenuRef = useRef(null);
     const router = useRouter();
 
     // Get the query parameter from the URL
     const searchParams = useSearchParams();
-    const view = searchParams.get("view");
+    const view = searchParams?.get("view") ?? "default"; // "get" or "give"
 
     // Load nickname from session storage
     useEffect(() => {
@@ -36,21 +33,49 @@ export default function GenderSexualitySelection() {
 
     // Filtered options based on search input
     const filteredGenders = genders.filter((gender) =>
-        gender.toLowerCase().includes(genderSearch.toLowerCase())
+        gender.includes(genderSearch)
     );
 
     const filteredSexualities = sexualities.filter((sexuality) =>
-        sexuality.toLowerCase().includes(sexualitySearch.toLowerCase())
+        sexuality.includes(sexualitySearch)
     );
 
     // Handle Proceed Button
-    const handleProceed = () => {
-        if (selectedGender && selectedSexuality) {
+    const handleProceed = async () => {
+        if (!selectedGender || !selectedSexuality) {
+            alert("Please select both a gender and a sexuality.");
+            return;
+        }
+
+        try {
+            // Save selected options to session storage
             sessionStorage.setItem("selectedGender", selectedGender);
             sessionStorage.setItem("selectedSexuality", selectedSexuality);
-            router.push(`/loading?view=${view}`);
-        } else {
-            alert("Please select both a gender and a sexuality.");
+
+            // Make the API call for matchmaking
+            const response = await fetch("/api/matchmaking", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    nickname, // Use nickname from session storage
+                    type: view, // "get" or "give"
+                    gender: selectedGender,
+                    sexuality: selectedSexuality,
+                }),
+            });
+
+            if (!response.ok) {
+                const error = await response.json();
+                console.error("Matchmaking API error:", error);
+                alert("An error occurred during matchmaking. Please try again.");
+                return;
+            }
+
+            // Redirect to the loading page
+            router.push(`/loading?view=${view}&nickname=${nickname}`);
+        } catch (error) {
+            console.error("Network error during matchmaking:", error);
+            alert("A network error occurred. Please try again.");
         }
     };
 
@@ -58,12 +83,11 @@ export default function GenderSexualitySelection() {
         <div className="flex flex-col overflow-y-auto items-center justify-center min-h-screen p-8 font-roboto">
             {/* Conditional Heading */}
             <p className="font-medium text-h1 mb-4 mt-14">
-                {view === "get" &&
-                    `Whose perspective would you like to gain today, ${
+                {view === "get"
+                    ? `Whose perspective would you like to gain today, ${
                         nickname || "Username"
-                    }?`}
-                {view === "give" &&
-                    `What perspective can you share today, ${
+                    }?`
+                    : `What perspective can you share today, ${
                         nickname || "Username"
                     }?`}
             </p>
@@ -78,7 +102,10 @@ export default function GenderSexualitySelection() {
                         {selectedGender || "Select Gender"}
                     </button>
                     {genderMenuOpen && (
-                        <div className="border rounded-lg mt-2 p-4 bg-white">
+                        <div
+                            ref={genderMenuRef}
+                            className="border rounded-lg mt-2 p-4 bg-white"
+                        >
                             <input
                                 type="text"
                                 placeholder="Search gender..."
@@ -107,17 +134,24 @@ export default function GenderSexualitySelection() {
                 <div className="max-w-md m-4">
                     <button
                         className="w-full text-h3 text-white bg-popPurple p-4 rounded-full"
-                        onClick={() => setSexualityMenuOpen(!sexualityMenuOpen)}
+                        onClick={() =>
+                            setSexualityMenuOpen(!sexualityMenuOpen)
+                        }
                     >
                         {selectedSexuality || "Select Sexuality"}
                     </button>
                     {sexualityMenuOpen && (
-                        <div className="border rounded-lg mt-2 p-4 bg-white">
+                        <div
+                            ref={sexualityMenuRef}
+                            className="border rounded-lg mt-2 p-4 bg-white"
+                        >
                             <input
                                 type="text"
                                 placeholder="Search sexuality..."
                                 value={sexualitySearch}
-                                onChange={(e) => setSexualitySearch(e.target.value)}
+                                onChange={(e) =>
+                                    setSexualitySearch(e.target.value)
+                                }
                                 className="w-full p-2 mb-4 border rounded"
                             />
                             <ul className="max-h-60 overflow-y-auto">
@@ -140,20 +174,28 @@ export default function GenderSexualitySelection() {
             </div>
 
             {/* Proceed Button */}
-            {selectedGender && selectedSexuality && (
-                <button
-                    className="text-black hover:text-popPurple mt-4"
-                    onClick={handleProceed}
-                >
-                    Proceed!
-                </button>
-            )}
+            <button
+                className={`text-black hover:text-popPurple mt-4 ${
+                    selectedGender && selectedSexuality
+                        ? ""
+                        : "opacity-50 cursor-not-allowed"
+                }`}
+                onClick={handleProceed}
+                disabled={!selectedGender || !selectedSexuality}
+            >
+                Proceed!
+            </button>
             <GoBackButton />
 
             <div>
-                <p className="p-10 max-w-md">*We’re working to include more genders and sexualities, but with our small (and growing!) community, 
-                    we’re starting simple—stay tuned as we grow! If you don’t see your gender, sexuality, or your crush’s represented, 
-                    we’d love to hear from you—please email us and help us make Perspective even better!</p>
+                <p className="p-10 max-w-md">
+                    *We’re working to include more genders and sexualities, but
+                    with our small (and growing!) community, we’re starting
+                    simple—stay tuned as we grow! If you don’t see your gender,
+                    sexuality, or your crush’s represented, we’d love to hear
+                    from you—please email us and help us make Perspective even
+                    better!
+                </p>
             </div>
         </div>
     );

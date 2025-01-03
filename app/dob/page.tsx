@@ -46,7 +46,7 @@ export default function dob() {
             <form onSubmit={handleSubmit} className="flex flex-col items-center space-y-8">
                 {/* Title */}
                 {/* <span>Before we continue, {nickname || "Username"}</span> */}
-                <span className="font-medium text-h1 mb-4">What is your date of birth?</span>
+                <span className="font-medium text-h1 mb-4 pt-60">What is your date of birth?</span>
 
                 {/* Date Input */}
                 <input

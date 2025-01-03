@@ -18,6 +18,7 @@
         "name": "next"
       }
     ],
+    "baseUrl": ".", // Ensures the root directory is used
     "paths": {
       "@/*": ["./*"]
     }

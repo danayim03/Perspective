@@ -13,14 +13,17 @@ export default function Loading() {
     const [status, setStatus] = useState("Give us a sec...");
     const searchParams = useSearchParams();
     const router = useRouter();
-    const view = searchParams.get("view"); // Either "get" or "give"
+    const view = searchParams?.get("view") ?? "default";
 
     useEffect(() => {
         const storedGender = sessionStorage.getItem("selectedGender");
         const storedSexuality = sessionStorage.getItem("selectedSexuality");
 
         if (view === "give") {
-            // Emit real WebSocket event for givers
+            setGender(storedGender || "");
+            setSexuality(storedSexuality || "");
+
+            // Emit WebSocket event for givers
             socket.emit("find-match", {
                 userGender: storedGender,
                 userSexuality: storedSexuality,
@@ -31,7 +34,7 @@ export default function Loading() {
             setDesiredGender(storedGender || "");
             setDesiredSexuality(storedSexuality || "");
 
-            // Emit real WebSocket event for getters
+            // Emit WebSocket event for getters
             socket.emit("find-match", {
                 userGender: "",
                 userSexuality: "",
@@ -40,14 +43,12 @@ export default function Loading() {
             });
         }
 
-        // Handle match found
         socket.on("match-found", (matchedUser) => {
             console.log("Match found:", matchedUser);
             setStatus("Match found! Redirecting...");
             setTimeout(() => router.push(`/chat?matchId=${matchedUser.socketId}`), 1000);
         });
 
-        // Handle no match found
         socket.on("no-match", () => {
             console.log("No match found");
             setStatus("No match found yet. Retrying...");
@@ -72,7 +73,10 @@ export default function Loading() {
                 )}
                 {view === "give" && (
                     <span className="text-h2 font-medium">
-                        {status} Matching you with someone seeking your perspective...
+                        {status}{" "}
+                        {gender && sexuality
+                            ? `You are offering your perspective as a ${sexuality.toLowerCase()} ${gender.toLowerCase()}...`
+                            : "Matching you with someone seeking your perspective..."}
                     </span>
                 )}
             </div>

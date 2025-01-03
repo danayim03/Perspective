@@ -44,6 +44,7 @@ export default function get_give() {
                     Give a perspective
                 </button>
             </div>
+            <GoBackButton />
         </main>
     );
 }

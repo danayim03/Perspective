@@ -1,0 +1,7 @@
+{
+    "semi": true,
+    "singleQuote": true,
+    "trailingComma": "all",
+    "importOrder": ["^[a-z]", "^@/", "^[./]"],
+    "importOrderSeparation": true
+}

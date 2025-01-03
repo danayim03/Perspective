@@ -1,0 +1,16 @@
+# Ignore Node.js dependencies
+node_modules/
+
+# Ignore build output directories
+.next/
+dist/
+
+# Ignore static files
+public/
+
+# Ignore environment and config files
+.env
+pnpm-lock.yaml
+
+# Ignore Prettier config itself (optional, since formatting it is redundant)
+.prettierrc
