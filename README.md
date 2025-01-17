@@ -4,9 +4,9 @@ Curious about your crush’s perspective? Chat anonymously on Perspective with s
 </p>
 
 ### Here's how it works:
-- **1.** Choose to get a perspective (💡) or give a perspective (🍵👀).
-- **2.** Match anonymously based on preferences like gender and sexuality, ensuring the advice feels relevant and personal.
-- **3.** Start chatting, ask questions, and share insights—all in a safe space where your conversation disappears after the session.
+ **1.** Choose to get a perspective (💡) or give a perspective (🍵👀).
+ **2.** Match anonymously based on preferences like gender and sexuality, ensuring the advice feels relevant and personal.
+ **3.** Start chatting, ask questions, and share insights—all in a safe space where your conversation disappears after the session.
 
 ### Who is it for?:
 <p>
