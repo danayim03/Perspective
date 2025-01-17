@@ -1,8 +1,23 @@
+## Perspective 
+User Experience Flow
+<img width="1440" alt="Screenshot 2025-01-17 at 3 38 34 PM" src="https://github.com/user-attachments/assets/ab4af1b8-ae11-4657-b2fe-9e3148e9e356" />
 
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+<img width="1440" alt="Screenshot 2025-01-17 at 3 38 46 PM" src="https://github.com/user-attachments/assets/7fd152ba-ff02-4d12-86d9-8f355a6f9543" />
+
+<img width="1440" alt="Screenshot 2025-01-17 at 3 39 13 PM" src="https://github.com/user-attachments/assets/7bd6a6bc-03e6-48ea-a094-29403a20962e" />
+
+<img width="1440" alt="Screenshot 2025-01-17 at 3 39 29 PM" src="https://github.com/user-attachments/assets/b29a5df1-7fe1-4dd3-9f06-2291d965fe27" />
+
+<img width="1440" alt="Screenshot 2025-01-17 at 3 39 44 PM" src="https://github.com/user-attachments/assets/38c3fe32-98ac-440b-8628-8e3161ab4620" />
+
+<img width="1440" alt="Screenshot 2025-01-17 at 3 40 57 PM" src="https://github.com/user-attachments/assets/7e150509-25dc-4af9-9135-3b7d54a0e673" />
+
+<img width="1440" alt="Screenshot 2025-01-17 at 3 40 43 PM" src="https://github.com/user-attachments/assets/8d1fbf14-3fc6-4b89-895d-75607fc94a1f" />
+
+
 
 ## Getting Started
-
+This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 First, run the development server:
 
 ```bash
