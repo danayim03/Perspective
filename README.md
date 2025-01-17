@@ -1,5 +1,19 @@
-## Perspective 
-User Experience Flow
+## About Perspective 
+<p>
+Curious about your crush’s perspective? Chat anonymously on Perspective with someone who shares your crush’s gender and sexuality! Whether you’re seeking advice or just want to yap about the situation 🤷‍♀️, this is your space. You can join as either a perspective giver or a getter. Who doesn’t love a little tea about someone else’s relationship before bed?
+</p>
+
+### Here's how it works:
+- **1.** Choose to get a perspective (💡) or give a perspective (🍵👀).
+- **2.** Match anonymously based on preferences like gender and sexuality, ensuring the advice feels relevant and personal.
+- **3.** Start chatting, ask questions, and share insights—all in a safe space where your conversation disappears after the session.
+
+### Who is it for?:
+<p>
+Perspective is for everyone. It’s a welcoming space for people of all genders and sexualities to give or receive advice, gain clarity, and understand relationships from new angles.
+</p>
+
+## User Experience Flow
 <img width="1440" alt="Screenshot 2025-01-17 at 3 38 34 PM" src="https://github.com/user-attachments/assets/ab4af1b8-ae11-4657-b2fe-9e3148e9e356" />
 
 <img width="1440" alt="Screenshot 2025-01-17 at 3 38 46 PM" src="https://github.com/user-attachments/assets/7fd152ba-ff02-4d12-86d9-8f355a6f9543" />
